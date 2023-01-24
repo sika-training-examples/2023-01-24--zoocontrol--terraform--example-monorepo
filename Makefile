@@ -8,6 +8,12 @@ setup-git-hooks:
 	rm -rf .git/hooks
 	(cd .git && ln -s ../.git-hooks hooks)
 
+_infracost:
+ifndef ENV
+	$(error ENV is undefined)
+endif
+	cd env/${ENV} && infracost breakdown --path . --show-skipped
+
 _terraform-providers-lock:
 ifndef ENV
 	$(error ENV is undefined)

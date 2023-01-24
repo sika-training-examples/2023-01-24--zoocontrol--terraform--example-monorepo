@@ -3,3 +3,6 @@ terraform-providers-lock:
 
 terraform-init-state:
 	@(cd ../.. && make _terraform-init-state ENV=prod)
+
+infracost:
+	@(cd ../.. && make _infracost ENV=prod)
