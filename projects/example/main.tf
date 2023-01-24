@@ -4,6 +4,9 @@ variable "prefix" {
 variable "zone_id" {
   type = string
 }
+variable "instance_type" {
+  type = string
+}
 
 locals {
   prefix  = var.prefix
@@ -16,10 +19,11 @@ resource "aws_key_pair" "default" {
 }
 
 module "vm" {
-  source   = "../../modules/ec2"
-  zone_id  = local.zone_id
-  name     = "${local.prefix}-hello"
-  key_name = aws_key_pair.default.key_name
+  source        = "../../modules/ec2"
+  zone_id       = local.zone_id
+  name          = "${local.prefix}-hello"
+  key_name      = aws_key_pair.default.key_name
+  instance_type = var.instance_type
 }
 
 output "domain" {
